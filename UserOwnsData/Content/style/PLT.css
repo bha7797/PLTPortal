@@ -1,0 +1,67 @@
+﻿.plt_title {
+    text-align: center;
+    background: transparent linear-gradient(90deg, #F5F5F5 0%, #DECCCC 52%, #F5F5F5 100%) 0% 0% no-repeat padding-box;
+    padding: 15px;
+    border: 1px solid #E8E8E8;
+    border-image: linear-gradient(270deg, #F5F5F5 0%, #E2B2B2 49%, #F5F5F5 100%) 100% 0% 100% 0%/2px 0 2px 0 stretch;
+    margin: 0px;
+}
+
+.title_p {
+    font-size: small;
+}
+
+.plt_slicers{
+    display: flex;
+    justify-content: start;
+    padding: 15px 0;
+}
+
+.plt_slicers > *:last-child {
+    margin-left: auto;
+}
+
+@media screen and (max-width: 775px) {
+    .plt_slicers {
+        display: flex;
+        flex-direction: column;
+        padding: 15px 0;
+    }
+        .plt_slicers > *:last-child {
+            margin-left: 0px;
+        }
+}
+
+.plt_config-container-row{
+    margin-right: 15px;
+}
+
+.plt_table {
+    width: 100%;
+    margin: 15px 25px;
+}
+
+.plt_addreport {
+    margin: 15px 0;
+    padding: 0 10px;
+    width: 225px;
+    background: #BA1B1A 0% 0% no-repeat padding-box;
+    border: 1px solid #BA1B1A;
+    border-radius: 4px;
+    opacity: 1;
+    color: #ffffff;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.plt_addreport_svg {
+    background-color: black;
+}
+
+.plt_table_td_firstchild{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}

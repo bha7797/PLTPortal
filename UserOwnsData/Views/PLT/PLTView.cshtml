@@ -1,0 +1,144 @@
+﻿@model UserOwnsData.Models.AuthPLTViewModel
+
+@{
+    ViewBag.Title = "PLTView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    HashSet<string> distinctWorkspaces = new HashSet<string>();
+    HashSet<string> distinctReports = new HashSet<string>();
+    foreach (var item in Model.PLTModel)
+    {
+        distinctWorkspaces.Add(@item.WorkspaceName);
+        distinctReports.Add(@item.ReportName);
+    }
+}
+<script type="text/javascript">
+    window.onload = function () {
+        $(".plt_addreport").on("click", function () {
+			location.href = '@Url.Action("Embed", "EmbedInfo")';
+        });
+    };
+</script>
+
+@*Inactivity model*@
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Idle Notification</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="inactivityModelText">Your session was inactive. Browser refreshes after 60 minutes of inactivity.</p>
+                <p>Browser will refresh within 10 minutes, if no activity detected.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <header>
+        <span class="embed_header_title"><strong>PLT Application</strong></span>
+        <span id="userName" class="username cursor">@Model.AuthDetails.UserName</span>
+    </header>
+
+    <div class="user-profile">
+        <div class="username">@Model.AuthDetails.UserName</div>
+        <div class="useremail">@Model.AuthDetails.UserEmail</div>
+        <div class="signout cursor">
+            <img class="signout-svg" src="../../Content/img/Sign-out.svg" width="15" height="30" />
+            <span>Sign out</span>
+        </div>
+    </div>
+
+    <div class="plt_title">
+        <h1>Welcome to PLT Application</h1>
+        <p class="title_p">Find the PLT of your desired Report. Save and analyze it later</p>
+    </div>
+
+    <div class="embed_body">
+        <div class="plt_slicers">
+            <div class="plt_config-container-row">
+                <label for="plt_workspace-select">Workspace</label><br />
+                <select id="plt_workspace-select" class="select-list">
+                    <option value="" selected>Choose Workspace</option>
+                    @foreach (var item in distinctWorkspaces)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
+            </div>
+
+            <div class="plt_config-container-row">
+                <label for="report-select">Report</label><br />
+                <select id="report-select" class="select-list">
+                    <option value="" selected>Choose Report</option>
+                    @foreach (var item in distinctReports)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
+            </div>
+            <button type="button" class="plt_addreport">
+                <img src="../../Content/img/Plus.svg" width="30" height="30" />
+                <span>Add PLT of Report/Page</span>
+            </button>
+        </div>
+        <div class="embed_table_div">
+            <table class="reportName_table">
+                <tr>
+                    <th>File</th>
+                    <th>PLT</th>
+                    <th>Last Run Time</th>
+                </tr>
+                @foreach (var item in Model.PLTModel)
+                {
+                    <tr workspace-name="@item.WorkspaceName" report-name="@item.ReportName" page-name="@item.PageName)">
+                        <td class="plt_table_td_firstchild">
+                            <img class="plt_file_svg" src="../../Content/img/File.svg" width="30" height="30" />
+                            @Html.DisplayFor(modelItem => item.WorkspaceName) > @Html.DisplayFor(modelItem => item.ReportName) > @Html.DisplayFor(modelItem => item.PageName)
+                        </td>
+                        <td>
+                            @if (item.PLT == 0)
+                            {
+                                <img class="plt_file_svg" src="../../Content/img/Load.svg" width="30" height="30" title="PLT calculation is in progress" />
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.PLT)<span>s</span>
+                            }
+                        </td>
+                        <td>
+                            @if (item.EndTime == "")
+                            {
+                                <img class="plt_file_svg" src="../../Content/img/Load.svg" width="30" height="30" title="PLT calculation is in progress" />
+                            }
+                            else
+                            {
+                                <p>@DateTime.Parse(item.EndTime).ToString("G")</p>
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+    <span class="company">Created by <span class="company_name">MAQ</span> Software</span>
+
+    <script>
+    loggedInUser.accessToken = "@Model.AuthDetails.AccessToken";
+
+
+
+   // Retrieve Power BI hostname from Web.config file
+    globals.powerBiHostname = '@System.Configuration.ConfigurationManager.AppSettings["powerBiHostname"]';
+
+
+
+   // Cache base endpoint for Power BI REST API
+    globals.powerBiApi = '@System.Configuration.ConfigurationManager.AppSettings["powerBiApiUrl"]' + '/v1.0/myorg';
+    </script>

@@ -1,0 +1,89 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap");
+
+body {
+    font-family: "Roboto", sans-serif;
+    background: #F0F0F0;
+    opacity: 1;
+    height: 100vh;
+    position: relative;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #E7E7E8 0% 0% no-repeat padding-box;
+}
+
+th{
+    padding: 15px;
+}
+td {
+    padding: 10px;
+}
+tr {
+    border-bottom: 1px solid #F0F0F0;
+    padding: 25px;
+}
+
+p {
+    margin: 0;
+}
+
+.company {
+    position: fixed;
+    left: 25px;
+    bottom: 25px;
+    font: normal normal normal 12px/16px Segoe UI;
+    color: #58595B;
+    background: #F0F0F080;
+}
+.company_name {
+    color: #BA141A;
+}
+
+.username {
+    font: normal normal normal 14px/30px Segoe UI;
+    line-height: unset;
+}
+.useremail {
+    font: normal normal normal 12px/30px Segoe UI;
+    line-height: unset;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #F0F0F0;
+}
+
+.user-profile {
+    position: absolute;
+    right: 5px;
+    top: 47px;
+    background: white;
+    width: 250px;
+    padding: 5px;
+    display: none;
+}
+.signout{
+    font-size: smaller;
+}
+.cursor {
+    cursor: pointer;
+}
+
+.postSaveMessage {
+    display: none;
+    border: 1px solid #79E0B7;
+    background: #CBF8E3 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #A0A0A029;
+    position: fixed;
+    top: 75px;
+    left: 50%;
+    border-radius: 4px;
+    opacity: 1;
+    padding: 5px;
+    transform: translate(-50%, 0);
+}
+.embed_close-svg {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+}

@@ -1,0 +1,60 @@
+﻿.select-list {
+    align-self: flex-end;
+    border-color: #d3d3d3;
+    border-radius: 5px;
+    padding: 0.5vh;
+    padding-left: 0.92vh;
+    min-width: 275px;
+    /*appearance: none;
+    background-image: url('./')*/
+}
+
+.select-list:focus {
+    outline: none;
+}
+
+.embed_title {
+    color: #BA1B1A;
+    font-size: x-large;
+}
+
+.embed_body{
+    margin: 15px 25px;
+}
+
+.embed_table_div{
+    margin-top: 16px;
+    background-color: white;
+    border-radius: 5px;
+}
+.reportName_table{
+    width: 100%;
+}
+.embed_table_left{
+    text-align: left;
+}
+.embed_table_right {
+    text-align: right;
+    margin-right: 10px;
+}
+.embed_table_pages_left{
+    margin-left: 20px;
+}
+.embed_noworkspace_message {
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    text-align: center;
+    color: #BA1B1A;
+}
+.embed_workspace_img{
+    margin:1%;
+}
+
+.embed_backbutton {
+    border: none;
+    display: flex;
+    align-items: center;
+    padding: 0px;
+    font: normal normal normal 12px/30px Segoe UI;
+}
